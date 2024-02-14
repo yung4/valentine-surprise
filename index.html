@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>will you be my valentine</title>
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <script>
+            let initialX = 0;
+            let initialY = 0;
+
+            let btnLeft = 0;
+            let btnTop = 0;
+            let btnBot = 0;
+            let btnRight = 0;
+
+            const offset = 50
+
+            function setInitial(e) {
+                const btn = document.getElementById("no");
+                const btnLocObj = btn.getBoundingClientRect();
+                
+                initialX = btnLocObj.x;
+                initialY = btnLocObj.y;
+            }
+
+            function troll(e) {
+                const x = e.clientX;
+                const y = e.clientY;
+                const w = window.innerWidth;
+                const h = window.innerHeight; 
+                
+                const btn = document.getElementById("no");
+                const btnLocObj = btn.getBoundingClientRect();
+
+                btnLeft = btnLocObj.x - offset;
+                btnTop = btnLocObj.y - offset;
+                btnBot = btnTop + btnLocObj.height + offset;
+                btnRight = btnLeft + btnLocObj.width + offset;
+
+                if (x > btnLeft && x < btnRight && y > btnTop && y < btnRight) {
+                    console.log("IN")
+                    const isRight = x > (btnRight + btnLeft) / 2
+                    const isBot = y > (btnTop + btnBot) / 2
+
+                    const dirX = isRight ? -1 : 1;
+                    const dirY = isBot ? -1 : 1;
+
+                    const edgeX = isRight ? initialX + btnLocObj.width : initialX
+                    const edgeY = isBot ? initialY + btnLocObj.height : initialY
+
+                    btn.style.transform = `translate(${x - edgeX + (dirX * offset)}px, ${y - edgeY + (dirY * offset)}px)`
+                }
+
+                
+                if (btnLeft <= 0 || btnRight >= w || btnTop <= 0 || btnBot >= h) {
+                    btn.style.transform = "translate(0, 0)";
+                }
+
+                console.log(x, y, btnLeft, btnTop, btnBot, btnRight, x - btnLeft, y - btnTop, initialX, initialY);
+            }
+        </script>
+    </head>
+
+    <body onmousemove="troll(event)" onload="setInitial(event)">
+        <div class="header">
+            <h1>
+                Will you be my valentine?
+            </h1>
+        </div>
+
+        <div class="buttons">
+            <button class="buttons_yes-btn" onclick="location.href='yes.html/'">Yes</button>
+            <button class="buttons_no-btn" id="no" onclick="location.href='no.html/'">No</button>
+        </div>
+    </body>
+</html>

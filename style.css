@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lavender;
+}
+
+.header {
+    text-align: center;
+}
+
+.buttons {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin: 1rem;
+    padding: 1rem;
+    font-size: medium;
+}
+
+.buttons_yes-btn {
+    z-index: 2;
+    color: white;
+    background-color: slateblue;
+}
+
+.buttons_no-btn {
+    color: white;
+    background-color: palevioletred;
+}
+
+button:hover {
+    background-color: rgb(161, 140, 199);
+    cursor: pointer;
+}
