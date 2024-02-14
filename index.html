@@ -40,8 +40,7 @@
                 btnBot = btnTop + btnLocObj.height + offset;
                 btnRight = btnLeft + btnLocObj.width + offset;
 
-                if (x > btnLeft && x < btnRight && y > btnTop && y < btnRight) {
-                    console.log("IN")
+                if (x > btnLeft && x < btnRight && y > btnTop && y < btnBot) {
                     const isRight = x > (btnRight + btnLeft) / 2
                     const isBot = y > (btnTop + btnBot) / 2
 
@@ -58,8 +57,6 @@
                 if (btnLeft <= 0 || btnRight >= w || btnTop <= 0 || btnBot >= h) {
                     btn.style.transform = "translate(0, 0)";
                 }
-
-                console.log(x, y, btnLeft, btnTop, btnBot, btnRight, x - btnLeft, y - btnTop, initialX, initialY);
             }
         </script>
     </head>
