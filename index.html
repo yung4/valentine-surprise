@@ -16,7 +16,9 @@
             let btnBot = 0;
             let btnRight = 0;
 
-            const offset = 50
+            let scale = 1;
+
+            const offset = 50;
 
             function setInitial(e) {
                 const btn = document.getElementById("no");
@@ -41,16 +43,19 @@
                 btnRight = btnLeft + btnLocObj.width + offset;
 
                 if (x > btnLeft && x < btnRight && y > btnTop && y < btnBot) {
-                    const isRight = x > (btnRight + btnLeft) / 2
-                    const isBot = y > (btnTop + btnBot) / 2
+                    const isRight = x > (btnRight + btnLeft) / 2;
+                    const isBot = y > (btnTop + btnBot) / 2;
 
                     const dirX = isRight ? -1 : 1;
                     const dirY = isBot ? -1 : 1;
 
-                    const edgeX = isRight ? initialX + btnLocObj.width : initialX
-                    const edgeY = isBot ? initialY + btnLocObj.height : initialY
+                    const edgeX = isRight ? initialX + btnLocObj.width : initialX;
+                    const edgeY = isBot ? initialY + btnLocObj.height : initialY;
 
-                    btn.style.transform = `translate(${x - edgeX + (dirX * offset)}px, ${y - edgeY + (dirY * offset)}px)`
+                    scale += 0.02;
+
+                    btn.style.transform = `translate(${x - edgeX + (dirX * offset)}px, ${y - edgeY + (dirY * offset)}px)`;
+                    document.getElementById("yes").style.transform = `scale(${scale})`;
                 }
 
                 
@@ -69,8 +74,8 @@
         </div>
 
         <div class="buttons">
-            <button class="buttons_yes-btn" onclick="location.href='yes.html/'">Yes</button>
-            <button class="buttons_no-btn" id="no" onclick="location.href='no.html/'">No</button>
+            <button class="buttons_yes-btn" id="yes" onclick="location.href='yes.html'">Yes</button>
+            <button class="buttons_no-btn" id="no" onclick="location.href='no.html'">No</button>
         </div>
     </body>
 </html>
